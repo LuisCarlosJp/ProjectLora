@@ -1,0 +1,320 @@
+[
+    {
+        "id": "aaa172f8ea343bc6",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "701f3d27bcace7e6",
+        "type": "mqtt-broker",
+        "name": "MQTT Broker",
+        "broker": "192.168.0.249",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "07dda84fc19bc849",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "sensors",
+        "name": "database",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "32f99137d78cc360",
+        "type": "node-red-contrib-whatsapp-cmb-account",
+        "name": "luis"
+    },
+    {
+        "id": "e4e13b786b1b9986",
+        "type": "telegram bot",
+        "botname": "alertasensoresbot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "59f786f83ea17ccf",
+        "type": "mqtt in",
+        "z": "aaa172f8ea343bc6",
+        "name": "Temperature S1",
+        "topic": "home/sensor1/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "701f3d27bcace7e6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "07ed2244188c34f8",
+                "a7e99325a45ec0a2",
+                "983c825550e2d5cb"
+            ]
+        ]
+    },
+    {
+        "id": "07ed2244188c34f8",
+        "type": "debug",
+        "z": "aaa172f8ea343bc6",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e0dbf39c16d46fe5",
+        "type": "mqtt in",
+        "z": "aaa172f8ea343bc6",
+        "name": "Pressure S1",
+        "topic": "home/sensor1/pressure",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "701f3d27bcace7e6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "ab1dd1f0f4f183dc"
+            ]
+        ]
+    },
+    {
+        "id": "5835a57f87bc4af1",
+        "type": "debug",
+        "z": "aaa172f8ea343bc6",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "983c825550e2d5cb",
+        "type": "switch",
+        "z": "aaa172f8ea343bc6",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "10",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "e00b0aeb1213e5f2",
+                "56bec037f1699264"
+            ]
+        ]
+    },
+    {
+        "id": "56bec037f1699264",
+        "type": "template",
+        "z": "aaa172f8ea343bc6",
+        "name": "",
+        "field": "text",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "The current temperature is {{payload}} !",
+        "output": "str",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "18b56271d6dd7ede"
+            ]
+        ]
+    },
+    {
+        "id": "03b870a0d168f4f8",
+        "type": "debug",
+        "z": "aaa172f8ea343bc6",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e00b0aeb1213e5f2",
+        "type": "function",
+        "z": "aaa172f8ea343bc6",
+        "name": "function 1",
+        "func": "var temp = msg.payload\nmsg.payload = {}\nmsg.payload.chatId = 1502999585\nmsg.payload.type = 'message'\nmsg.payload.content = temp\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 120,
+        "wires": [
+            [
+                "c5334fb863cf6280"
+            ]
+        ]
+    },
+    {
+        "id": "a7e99325a45ec0a2",
+        "type": "influxdb out",
+        "z": "aaa172f8ea343bc6",
+        "influxdb": "07dda84fc19bc849",
+        "name": "Temperature S1",
+        "measurement": "home/sensor1/temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 440,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ab1dd1f0f4f183dc",
+        "type": "influxdb out",
+        "z": "aaa172f8ea343bc6",
+        "influxdb": "07dda84fc19bc849",
+        "name": "Pressure S1",
+        "measurement": "home/sensor1/pressure",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 430,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "18b56271d6dd7ede",
+        "type": "node-red-contrib-whatsapp-cmb-send-message",
+        "z": "aaa172f8ea343bc6",
+        "name": "",
+        "credtype": "account",
+        "account": "32f99137d78cc360",
+        "text": "text",
+        "phonenumbervalue": "",
+        "apikeyvalue": "",
+        "apikeyinputtypemessage": "msg",
+        "phonenumberinputtypemessage": "msg",
+        "inputtypemessage": "msg",
+        "rejectssl": false,
+        "x": 840,
+        "y": 240,
+        "wires": [
+            [
+                "5835a57f87bc4af1"
+            ]
+        ]
+    },
+    {
+        "id": "c5334fb863cf6280",
+        "type": "telegram sender",
+        "z": "aaa172f8ea343bc6",
+        "name": "",
+        "bot": "e4e13b786b1b9986",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 80,
+        "wires": [
+            [
+                "03b870a0d168f4f8"
+            ]
+        ]
+    }
+]

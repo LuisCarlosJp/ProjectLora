@@ -1,0 +1,12 @@
+{
+    "name": "Smart_Home_com_RaspberryPI_e_ESP32",
+    "description": "Node Red setup",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
+        }
+    }
+}
