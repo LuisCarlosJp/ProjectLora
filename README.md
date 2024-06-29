@@ -1,7 +1,7 @@
 
 # Smart Home com RaspberryPI e ESP32
 
-![Exemplo de dashboard do Grafana](https://github.com/LuisCarlosJp/Smart_Home_com_RaspberryPI_e_ESP32/assets/95140960/e6ece513-bd09-40e7-8583-841476966509)
+<img src="https://github.com/LuisCarlosJp/Smart_Home_com_RaspberryPI_e_ESP32/assets/95140960/e6ece513-bd09-40e7-8583-841476966509" width="50%" height="50%"/>
 
 Este projeto visa criar um sistema de monitoramento inteligente utilizando tecnologias IoT para capturar e visualizar dados meteorológicos em tempo real.
 
