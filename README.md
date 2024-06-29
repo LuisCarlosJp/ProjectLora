@@ -5,6 +5,9 @@
 
 Este projeto visa criar um sistema de monitoramento inteligente utilizando tecnologias IoT para capturar e visualizar dados meteorológicos em tempo real.
 
+<img src="https://github.com/LuisCarlosJp/Smart_Home_com_RaspberryPI_e_ESP32/assets/95140960/d0fe2f30-0ac8-4323-bad4-acbc4ffbf8f8" width="50%" height="50%"/>
+
+
 ## Funcionalidades Principais
 
 - **Captura de Dados Meteorológicos**: Utiliza o sensor BMP280 para medir temperatura e pressão atmosférica, fornecendo informações precisas sobre as condições ambientais.
